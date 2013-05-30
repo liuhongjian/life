@@ -1,0 +1,24 @@
+<div class='chose_category'>
+    <h3>请选择分类</h3>
+        <!-- <tr>
+            <th>分类名</th>
+        </tr> -->
+    <ul class="nav nav-pills nav-stacked">
+        <% @categories.each do |category| %>
+            <li>
+                <a href="#categories/<%= category.id %>"> <%= category.name %> </a>
+            </li>
+        <% end %>
+    </ul>
+
+    <br />
+
+    <%= link_to '不在列表中？ 新建一个分类', new_category_path %>
+</div>
+
+<script type='text/javascript'>
+    $(function() {
+        window.router = new Life.Routers.CategoriesRouter({categories: <%= @categories.to_json.html_safe -%>});
+        Backbone.history.start()
+    });
+</script>
